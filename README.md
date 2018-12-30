@@ -1,1 +1,1 @@
-# VanjorBlogWebsiteResource
+# VanjorAssetWebsite
