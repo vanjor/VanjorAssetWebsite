@@ -33,7 +33,7 @@ class BlogImageAutoSyncer:
             if image_key in diff_image_list:
                 diff_image_list.pop(image_key, None)
         BlogImageAutoSyncer._download_images(diff_image_list, self.target_images_dir)
-        information = "auto sync {} images:{}, with_full_image_count:{}, target_exist_image_count:{}".format(len(diff_image_list), len(full_image_list), len(already_image_list))
+        information = "auto sync image count:{} ; with_full_image_count:{}, target_exist_image_count:{}".format(len(diff_image_list), len(full_image_list), len(already_image_list))
         print(information)
         self._post_action(len(diff_image_list), information)
 
