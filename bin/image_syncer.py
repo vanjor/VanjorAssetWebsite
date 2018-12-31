@@ -48,10 +48,15 @@ class BlogImageAutoSyncer:
     def _post_action(self, sync_count, message):
         if sync_count > 0:
             print('start upload to target github repo')
-            os.system("cd " + self.target_git_local_dir)
-            os.system("git pull")
-            os.system("git commit -m \"{}\"".format(message))
-            os.system("git push")
+            command = " && ".join(
+                [
+                    "cd " + self.target_git_local_dir,
+                    "git pull",
+                    "git commit -m \"{}\"".format(message),
+                    "git push"
+                ]
+            )
+            os.system(command)
             print('finished upload to target github repo')
         else:
             print('incremental as 0 no need to upload to github')   
