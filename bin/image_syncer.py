@@ -52,6 +52,7 @@ class BlogImageAutoSyncer:
                 [
                     "cd " + self.target_git_local_dir,
                     "git pull",
+                    "git add *",
                     "git commit -m \"{}\"".format(message),
                     "git push"
                 ]
