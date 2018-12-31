@@ -46,9 +46,15 @@ class BlogImageAutoSyncer:
         os.system("git clone {git_address} {local_path}".format(git_address=self.target_git_url, local_path=self.target_git_local_dir))
 
     def _post_action(self, sync_count, message):
-        if sync_count:
+        if sync_count > 0:
+            print('start upload to target github repo')
             os.system("cd " + self.target_git_local_dir)
+            os.system("git pull")
             os.system("git commit -m \"{}\"".format(message))
+            os.system("git push")
+            print('finished upload to target github repo')
+        else:
+            print('incremental as 0 no need to upload to github')   
 
     @staticmethod
     def _get_image_list(source_file_dir):
