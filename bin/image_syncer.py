@@ -29,12 +29,12 @@ class BlogImageAutoSyncer:
         full_image_list = BlogImageAutoSyncer._get_image_list(self.source_pages_dir)
         already_image_list = BlogImageAutoSyncer._get_file_name_list(self.target_images_dir)
         diff_image_list = full_image_list.copy()
-        information = "auto sync image count:{} ; with_full_image_count:{}, target_exist_image_count:{}".format(len(diff_image_list), len(full_image_list), len(already_image_list))
-        print(information)
-        print('downloading started')
         for image_key in already_image_list:
             if image_key in diff_image_list:
                 diff_image_list.pop(image_key, None)
+        information = "auto sync image count:{} ; with_full_image_count:{}, target_exist_image_count:{}".format(len(diff_image_list), len(full_image_list), len(already_image_list))
+        print(information)
+        print('downloading started')
         BlogImageAutoSyncer._download_images(diff_image_list, self.target_images_dir)
         print('downloading finished')
         self._post_action(len(diff_image_list), information)
